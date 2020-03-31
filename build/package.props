@@ -1,0 +1,18 @@
+<Project>
+
+  <PropertyGroup>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Daniel Crenna &amp; Contributors</Authors>
+    <Description>String and text processing in .NET Core.</Description>
+    <Copyright>Copyright © Daniel Crenna &amp; Contributors. All rights reserved.</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/danielcrenna/ActiveText/master/assets/logo.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/danielcrenna/ActiveText</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/danielcrenna/ActiveText</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>dynamic text processing</PackageTags>
+    <Version>1.0.0</Version>
+    <PackageReleaseNotes>Initial implementation.</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
