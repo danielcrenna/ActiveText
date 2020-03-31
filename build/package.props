@@ -11,8 +11,8 @@
     <RepositoryUrl>https://github.com/danielcrenna/ActiveText</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dynamic text processing</PackageTags>
-    <Version>1.0.0</Version>
-    <PackageReleaseNotes>Initial implementation.</PackageReleaseNotes>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Auto-register built-in text transforms.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

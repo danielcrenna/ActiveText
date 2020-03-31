@@ -14,13 +14,13 @@ namespace ActiveText.Configuration
 {
 	internal class ConfigureTextOptions : IConfigureOptions<MvcOptions>
 	{
-		private readonly ILoggerFactory _loggerFactory;
-
 		private readonly ArrayPool<char> _charPool;
+		private readonly ILoggerFactory _loggerFactory;
 		private readonly ObjectPoolProvider _objectPoolProvider;
 		private readonly JsonSerializerSettings _settings;
 
-		public ConfigureTextOptions(ILoggerFactory loggerFactory, ArrayPool<char> charPool, ObjectPoolProvider objectPoolProvider, JsonSerializerSettings settings)
+		public ConfigureTextOptions(ILoggerFactory loggerFactory, ArrayPool<char> charPool,
+			ObjectPoolProvider objectPoolProvider, JsonSerializerSettings settings)
 		{
 			_loggerFactory = loggerFactory;
 			_charPool = charPool;
@@ -37,21 +37,26 @@ namespace ActiveText.Configuration
 
 			options.InputFormatters.Clear();
 			options.OutputFormatters.Clear();
-			
+
 			//
 			// XML:
 			if (string.IsNullOrEmpty(options.FormatterMappings.GetMediaTypeMappingForFormat("xml")))
 				options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeNames.Application.Xml);
-			options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter(new XmlWriterSettings {Indent = true, NamespaceHandling = NamespaceHandling.OmitDuplicates}, _loggerFactory));
+			options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter(
+				new XmlWriterSettings {Indent = true, NamespaceHandling = NamespaceHandling.OmitDuplicates},
+				_loggerFactory));
 			options.InputFormatters.Add(new XmlDataContractSerializerInputFormatter(options));
-			
+
 			//
 			// JSON:
 			if (string.IsNullOrEmpty(options.FormatterMappings.GetMediaTypeMappingForFormat("json")))
 				options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeNames.Application.Json);
-			options.InputFormatters.Add(new JsonInputFormatter(logger, _settings, _charPool, _objectPoolProvider, options, jsonOptions));
-			options.InputFormatters.Add(new JsonPatchInputFormatter(logger, _settings, _charPool, _objectPoolProvider, options, jsonOptions));
-			options.OutputFormatters.Add(new JsonOutputFormatter(_settings, _charPool, new OptionsWrapper<MvcOptions>(options)));
+			options.InputFormatters.Add(new JsonInputFormatter(logger, _settings, _charPool, _objectPoolProvider,
+				options, jsonOptions));
+			options.InputFormatters.Add(new JsonPatchInputFormatter(logger, _settings, _charPool, _objectPoolProvider,
+				options, jsonOptions));
+			options.OutputFormatters.Add(new JsonOutputFormatter(_settings, _charPool,
+				new OptionsWrapper<MvcOptions>(options)));
 		}
 	}
 }

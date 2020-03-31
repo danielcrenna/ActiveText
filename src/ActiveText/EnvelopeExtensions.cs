@@ -4,16 +4,18 @@
 using System.Collections.Generic;
 using System.Net;
 using ActiveErrors;
-using Microsoft.AspNetCore.Http;
 using ActiveStorage;
 using ActiveText.Configuration;
+using ActiveText.Enveloping;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ActiveText
 {
 	public static class EnrichmentExtensions
 	{
-		public static void MaybeEnvelope<T>(this HttpResponse response, HttpRequest request, JsonConversionOptions options, IPage<T> data, IList<Error> errors, out object body)
+		public static void MaybeEnvelope<T>(this HttpResponse response, HttpRequest request,
+			JsonConversionOptions options, IPage<T> data, IList<Error> errors, out object body)
 		{
 			var provider = request.HttpContext.RequestServices.GetService<IPagingInfoProvider>();
 
@@ -29,7 +31,7 @@ namespace ActiveText
 				};
 
 				body = envelope;
-				
+
 				if (provider != null)
 					envelope.Paging = provider.GetPagingInfo(request, data);
 
@@ -42,7 +44,8 @@ namespace ActiveText
 			body = new NestedCollectionBody<T> {Data = data, Errors = errors, HasErrors = errors?.Count > 0};
 		}
 
-		public static void MaybeEnvelope<T>(this HttpResponse response, HttpRequest request, JsonConversionOptions options, IStream<T> data, IList<Error> errors, out object body)
+		public static void MaybeEnvelope<T>(this HttpResponse response, HttpRequest request,
+			JsonConversionOptions options, IStream<T> data, IList<Error> errors, out object body)
 		{
 			if (FeatureRequested(request, options.EnvelopeOperator))
 			{
@@ -63,7 +66,8 @@ namespace ActiveText
 			response.StatusCode = (int) HttpStatusCode.OK;
 		}
 
-		public static void MaybeEnvelope<T>(this HttpResponse response, HttpRequest request, JsonConversionOptions options,
+		public static void MaybeEnvelope<T>(this HttpResponse response, HttpRequest request,
+			JsonConversionOptions options,
 			T data, IList<Error> errors, out object body)
 		{
 			if (FeatureRequested(request, options.EnvelopeOperator))
@@ -85,7 +89,8 @@ namespace ActiveText
 			response.StatusCode = (int) HttpStatusCode.OK;
 		}
 
-		public static void MaybeEnvelope(this HttpResponse response, HttpRequest request, JsonConversionOptions options, IList<Error> errors, out object body)
+		public static void MaybeEnvelope(this HttpResponse response, HttpRequest request, JsonConversionOptions options,
+			IList<Error> errors, out object body)
 		{
 			if (FeatureRequested(request, options.EnvelopeOperator))
 			{
