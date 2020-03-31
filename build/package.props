@@ -11,8 +11,8 @@
     <RepositoryUrl>https://github.com/danielcrenna/ActiveText</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dynamic text processing</PackageTags>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>Auto-register built-in text transforms.</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <PackageReleaseNotes>Add request to paging info response hook.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

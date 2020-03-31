@@ -9,6 +9,6 @@ namespace ActiveText
 	public interface IPagingInfoProvider
 	{
 		PagingInfo GetPagingInfo<T>(HttpRequest request, IPage<T> data);
-		void SetPagingInfoHeaders<T>(HttpResponse response, IPage<T> data);
+		void SetPagingInfoHeaders<T>(HttpRequest request, HttpResponse response, IPage<T> data);
 	}
 }

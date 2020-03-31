@@ -39,7 +39,7 @@ namespace ActiveText
 				return;
 			}
 
-			provider?.SetPagingInfoHeaders(response, data);
+			provider?.SetPagingInfoHeaders(request, response, data);
 
 			body = new NestedCollectionBody<T> {Data = data, Errors = errors, HasErrors = errors?.Count > 0};
 		}
